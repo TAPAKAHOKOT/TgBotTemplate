@@ -3,6 +3,7 @@ translations = {
         'answers': {
             'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i am bot tamplate',
             'help': '/help command',
+            'settings': 'Choose a setting'
         }
     },
     'answers': {
@@ -24,8 +25,13 @@ translations = {
         'answers': {
             'number-value': "Number value: {value}",
             'letter-value': "Letter value: {value}",
+            'choose-language': 'Choose language',
+            'language-updated-to': 'Language updated to {language}'
         },
         'keyboards': {
+            'settings': {
+                'language': 'Language'
+            },
             'example': {
                 '1': '1',
                 '2': '2',

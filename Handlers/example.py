@@ -3,28 +3,29 @@ from aiogram.dispatcher.filters import Text
 
 from Settings import settings
 from Configs import translations
-from Services import ExampleService
-from Callbacks import example_callback
+from Services import SettingsService
+from Callbacks import settings_callback, example_callback
 from Keyboards import example_keyboard
 
 
-# <<<<<<<<<<<<<<<<<< Command [answering with keyboard] >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler(commands=["start"])
-async def command_start_example(message: types.Message):
-    await message.answer(
-        translations.get('commands.answers.start').format(
-            user_name=message['from']['first_name'], 
-            bot_name=(await settings.bot.get_me()).first_name
-        ),
-        reply_markup=example_keyboard.main
+# <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=language] >>>>>>>>>>>>>>>>>>
+@settings.dp.callback_query_handler(settings_callback.main_inline_data.filter(value='language'))
+async def settings_callback_language(call: types.CallbackQuery, callback_data: dict):
+    inline = SettingsService.get_settings_languages_callback()
+    await call.message.edit_text(
+        translations.get('callbacks.answers.choose-language'), 
+        reply_markup=inline
     )
 
 
-# <<<<<<<<<<<<<<<<<< Command with callback >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler(commands=["help"])
-async def command_help_example(message: types.Message):
-    inline = ExampleService.get_example_inline_callback()
-    await message.answer(translations.get('commands.answers.help'), reply_markup=inline)
+# <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=language] >>>>>>>>>>>>>>>>>>
+@settings.dp.callback_query_handler(settings_callback.language_inline_data.filter())
+async def settings_callback_language_callback(call: types.CallbackQuery, callback_data: dict):
+    SettingsService.update_language(callback_data['value'])
+    await call.message.answer(
+        translations.get('callbacks.answers.language-updated-to').format(language=callback_data['value'].title()),
+        reply_markup=example_keyboard.get_main_keyboard()
+    )
 
 
 # <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=number] >>>>>>>>>>>>>>>>>>

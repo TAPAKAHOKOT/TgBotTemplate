@@ -2,7 +2,8 @@ translations = {
     'commands': {
         'answers': {
             'start': 'Добро пожаловать, {user_name}!\nЯ - *{bot_name}*, я шаблон для ботов',
-            'help': '/help команда'
+            'help': '/help команда',
+            'settings': 'Выбери настройку'
         }
     },
     'answers': {
@@ -24,8 +25,13 @@ translations = {
         'answers': {
             'number-value': "Значение номера: {value}",
             'letter-value': "Значение буквы: {value}",
+            'choose-language': 'Выбери язык',
+            'language-updated-to': 'Язык обновлен на {language}'
         },
         'keyboards': {
+            'settings': {
+                'language': 'Язык'
+            },
             'example': {
                 '1': '1',
                 '2': '2',

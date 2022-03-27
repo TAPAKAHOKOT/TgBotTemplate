@@ -3,7 +3,9 @@ from .languages.russian import translations as russian
 import logging
 
 class Translations:
-    def __init__(self, language: str):
+    def __init__(self, language: str, get_user_language: callable):
+        self.get_user_language = get_user_language
+
         self.language = language
         self.all_translations = {
             'english': english,
@@ -44,7 +46,7 @@ class Translations:
 
     
     def load_language(self) -> str:
-        return self.language
+        return self.get_user_language()
     
     def update_locale_translations(self):
         language = self.load_language()

@@ -1,5 +1,5 @@
+from .SettingsCallback import SettingsCallback
 from .ExampleCallback import ExampleCallback
-from .SerialCallback import SerialCallback
 
+settings_callback = SettingsCallback()
 example_callback = ExampleCallback()
-serial_callback = SerialCallback()
