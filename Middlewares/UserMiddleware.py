@@ -23,8 +23,11 @@ class UserMiddleware(BaseMiddleware):
                 )
                 session.add(user)
             session.commit()
+            
             data['user'] = user
-            data['user_role'] = user.role
+            data['user_relations'] = {
+                'role': user.role
+            }
 
 
         
