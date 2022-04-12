@@ -1,20 +1,33 @@
+from importlib_metadata import metadata
 from sqlalchemy import (
     ForeignKey,
     Table,
     Column,
     String,
-    Integer
+    Integer,
+    DateTime,
+    text
 )
+from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
 
-users_table = Table(
-    'users',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('username', String(256), nullable=True, unique=True),
-    Column('role_id', ForeignKey('roles.id'), nullable=False)
-)
+Base = declarative_base()
+
+class User(Base, BaseModel):
+    __tablename__ = 'users'
+    metadata = metadata
+
+    id = Column(Integer, autoincrement=True, primary_key=True)
+    role_id = Column(ForeignKey('roles.id'), nullable=True)
+
+    chat_id = Column(Integer, nullable=False, unique=True)
+    username = Column(String(256), nullable=True, unique=True)
+
+    created_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
+    updated_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
 
 
-user = BaseModel(users_table)
+    def get_class(self):
+        return User
