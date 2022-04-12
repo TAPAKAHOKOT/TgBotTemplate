@@ -7,6 +7,7 @@ from Middlewares import (
     LoggingMiddleware,
     UserMiddleware
 )
+from Filters import RolesFilter
 
 async def on_startup(x):
     logging.info('Bot started')
@@ -17,6 +18,9 @@ async def on_shutdown(x):
 def setup_middlewares():
     settings.dp.middleware.setup(LoggingMiddleware())
     settings.dp.middleware.setup(UserMiddleware())
+
+def bind_filters():
+    settings.dp.filters_factory.bind(RolesFilter)
 
 def start_polling():
     setup_middlewares()

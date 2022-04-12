@@ -3,7 +3,12 @@ translations = {
         'answers': {
             'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i am bot tamplate',
             'help': '/help command',
-            'settings': 'Choose a setting'
+            'settings': 'Choose a setting',
+            'role': {
+                'root': "You'r a boss!",
+                'admin': "You'r an admin!",
+                'user': "You'r an usual user, access denied((("
+            }
         }
     },
     'answers': {

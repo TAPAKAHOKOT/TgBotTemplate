@@ -1,9 +1,11 @@
 from aiogram import types
+from Filters.RolesFilter import RolesFilter
 
 from Settings import settings
 from Configs import translations
 from Services import SettingsService, ExampleService
 from Keyboards import example_keyboard
+from Filters import RolesFilter
 
 
 # <<<<<<<<<<<<<<<<<< Command [answering with keyboard] >>>>>>>>>>>>>>>>>>
@@ -30,3 +32,16 @@ async def command_help_example(message: types.Message):
 async def command_help_example(message: types.Message):
     inline = ExampleService.get_example_inline_callback()
     await message.answer(translations.get('commands.answers.help'), reply_markup=inline)
+
+
+# <<<<<<<<<<<<<<<<<< Command with callback >>>>>>>>>>>>>>>>>>
+@settings.dp.message_handler(RolesFilter(), commands=["admin"])
+async def command_admin_example(message: types.Message, is_root, is_admin):
+
+    answer_message = translations.get('commands.answers.role.root') if is_root else (
+        translations.get('commands.answers.role.admin') if is_admin else (
+            translations.get('commands.answers.role.user')
+        )
+    )
+
+    await message.answer(answer_message)

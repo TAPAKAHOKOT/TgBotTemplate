@@ -3,7 +3,12 @@ translations = {
         'answers': {
             'start': 'Добро пожаловать, {user_name}!\nЯ - *{bot_name}*, я шаблон для ботов',
             'help': '/help команда',
-            'settings': 'Выбери настройку'
+            'settings': 'Выбери настройку',
+            'role': {
+                'root': 'Ты босс',
+                'admin': 'Ты админ',
+                'user': 'Ты пользователь, доступ закрыт((('
+            }
         }
     },
     'answers': {

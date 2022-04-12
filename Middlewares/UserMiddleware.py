@@ -12,7 +12,7 @@ class UserMiddleware(BaseMiddleware):
         username = message.from_user['username']
 
         with Session(engine) as session:
-            user = session.query(User).where(
+            user: User = session.query(User).where(
                 User.chat_id == chat_id
             ).first()
 
@@ -24,6 +24,7 @@ class UserMiddleware(BaseMiddleware):
                 session.add(user)
             session.commit()
             data['user'] = user
+            data['user_role'] = user.role
 
 
         

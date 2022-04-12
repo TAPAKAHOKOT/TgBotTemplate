@@ -1,18 +1,17 @@
-from curses import meta
 from sqlalchemy import (
-    Table,
     Column,
     String,
     Integer,
     DateTime,
     text
 )
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+
 from datetime import datetime
+
+from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
-
-Base = declarative_base()
 
 class Role(Base, BaseModel):
     __tablename__ = 'roles'

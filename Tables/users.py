@@ -1,19 +1,18 @@
-from importlib_metadata import metadata
 from sqlalchemy import (
     ForeignKey,
-    Table,
     Column,
     String,
     Integer,
     DateTime,
     text
 )
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+
 from datetime import datetime
+
+from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
-
-Base = declarative_base()
 
 class User(Base, BaseModel):
     __tablename__ = 'users'
@@ -27,6 +26,11 @@ class User(Base, BaseModel):
 
     created_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
     updated_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
+
+    role = relationship(
+        'Role',
+        lazy='select'
+    )
 
 
     def get_class(self):
