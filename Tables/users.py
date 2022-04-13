@@ -6,7 +6,10 @@ from sqlalchemy import (
     DateTime,
     text
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import (
+    relationship,
+    Session
+)
 
 from datetime import datetime
 
@@ -24,14 +27,24 @@ class User(Base, BaseModel):
     chat_id = Column(Integer, nullable=False, unique=True)
     username = Column(String(256), nullable=True, unique=True)
 
-    created_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
+    last_activity_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
     updated_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
-
+    created_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
+    
     role = relationship(
         'Role',
-        lazy='select'
+        lazy='joined'
     )
 
 
     def get_class(self):
         return User
+
+    
+    def find_by_chat_id(session: Session, chat_id: int) -> 'User':
+        return session.query(User).where(
+                User.chat_id == chat_id
+            ).first()
+
+
+users_table = User.__table__

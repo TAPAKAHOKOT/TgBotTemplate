@@ -1,8 +1,8 @@
 """Initial
 
-Revision ID: 0a5b20c60074
+Revision ID: f29afd626450
 Revises: 
-Create Date: 2022-04-12 16:01:45.686695
+Create Date: 2022-04-13 12:45:23.625537
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0a5b20c60074'
+revision = 'f29afd626450'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,8 +30,9 @@ def upgrade():
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.Column('chat_id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=256), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('last_activity_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], name=op.f('fk_users_role_id_roles')),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_users')),
     sa.UniqueConstraint('chat_id', name=op.f('uq_users_chat_id')),

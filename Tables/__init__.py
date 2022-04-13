@@ -1,6 +1,8 @@
 from .users import (
-    User
+    User,
+    users_table
 )
 from .roles import (
-    Role
+    Role,
+    roles_table
 )

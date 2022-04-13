@@ -26,3 +26,6 @@ class Role(Base, BaseModel):
 
     def get_class(self):
         return Role
+    
+    
+roles_table = Role.__table__
