@@ -1,8 +1,8 @@
-"""Insert roles
+"""Add roles
 
-Revision ID: 1d138caf57f8
-Revises: f29afd626450
-Create Date: 2022-04-13 12:45:25.359399
+Revision ID: 45ddc843a0cf
+Revises: 9190790ddd76
+Create Date: 2022-04-16 18:06:37.697486
 
 """
 from alembic import op
@@ -11,8 +11,8 @@ from Tables import Role
 
 
 # revision identifiers, used by Alembic.
-revision = '1d138caf57f8'
-down_revision = 'f29afd626450'
+revision = '45ddc843a0cf'
+down_revision = '9190790ddd76'
 branch_labels = None
 depends_on = None
 

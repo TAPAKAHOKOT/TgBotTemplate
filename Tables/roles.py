@@ -5,7 +5,10 @@ from sqlalchemy import (
     DateTime,
     text
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import (
+    relationship,
+    Session
+)
 
 from datetime import datetime
 
@@ -26,6 +29,12 @@ class Role(Base, BaseModel):
 
     def get_class(self):
         return Role
+    
+
+    def find_by_role(session: Session, role: str) -> 'Role':
+        return session.query(Role).where(
+                Role.role == role
+            ).first()
     
     
 roles_table = Role.__table__

@@ -22,7 +22,7 @@ class User(Base, BaseModel):
     metadata = metadata
 
     id = Column(Integer, autoincrement=True, primary_key=True)
-    role_id = Column(ForeignKey('roles.id'), nullable=True)
+    role_id = Column(ForeignKey('roles.id', ondelete="SET NULL"), nullable=True)
 
     chat_id = Column(Integer, nullable=False, unique=True)
     username = Column(String(256), nullable=True, unique=True)

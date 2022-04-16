@@ -5,6 +5,7 @@ from Settings import settings
 from Handlers import *
 from Middlewares import (
     LoggingMiddleware,
+    SetupRoleMiddleware,
     UserMiddleware
 )
 from Filters import RolesFilter
@@ -18,6 +19,7 @@ async def on_shutdown(x):
 def setup_middlewares():
     settings.dp.middleware.setup(LoggingMiddleware())
     settings.dp.middleware.setup(UserMiddleware())
+    settings.dp.middleware.setup(SetupRoleMiddleware())
 
 def bind_filters():
     settings.dp.filters_factory.bind(RolesFilter)
