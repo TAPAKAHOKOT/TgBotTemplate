@@ -1,11 +1,10 @@
 from aiogram import types
-from Filters.RolesFilter import RolesFilter
 
 from Settings import settings
 from Configs import translations
-from Services import SettingsService, ExampleService
-from Keyboards import example_keyboard
-from Filters import RolesFilter
+from src.Services import SettingsService, ExampleService
+from src.Keyboards import example_keyboard
+from src.Filters import RolesFilter
 
 
 # <<<<<<<<<<<<<<<<<< Command [answering with keyboard] >>>>>>>>>>>>>>>>>>

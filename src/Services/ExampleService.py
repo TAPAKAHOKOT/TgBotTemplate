@@ -1,4 +1,4 @@
-from Callbacks import example_callback
+from src.Callbacks import example_callback
 from aiogram.types.inline_keyboard import InlineKeyboardMarkup
 
 class ExampleService:

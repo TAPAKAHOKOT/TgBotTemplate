@@ -3,9 +3,9 @@ from aiogram.dispatcher.filters import Text
 
 from Settings import settings
 from Configs import translations
-from Services import SettingsService
-from Callbacks import settings_callback, example_callback
-from Keyboards import example_keyboard
+from src.Services import SettingsService
+from src.Callbacks import settings_callback, example_callback
+from src.Keyboards import example_keyboard
 
 
 # <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=number] >>>>>>>>>>>>>>>>>>

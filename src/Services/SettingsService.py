@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from aiogram.types.inline_keyboard import InlineKeyboardMarkup
 
-from Callbacks import settings_callback
+from src.Callbacks import settings_callback
 from Database import engine
 from Tables import UserSettings
 from Configs import (

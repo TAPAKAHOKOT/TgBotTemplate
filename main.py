@@ -2,14 +2,14 @@ from loguru import logger
 from aiogram import executor
 from Settings import settings
 
-from Handlers import *
-from Middlewares import (
+from src.Handlers import *
+from src.Middlewares import (
     LoggingMiddleware,
     UserMiddleware,
     SetupRoleMiddleware,
     TranslationMiddleware
 )
-from Filters import RolesFilter
+from src.Filters import RolesFilter
 
 async def on_startup(x):
     logger.info('Bot started')

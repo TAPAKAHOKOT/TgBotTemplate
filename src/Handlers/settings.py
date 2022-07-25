@@ -2,9 +2,9 @@ from aiogram import types
 
 from Settings import settings
 from Configs import translations
-from Services import SettingsService
-from Callbacks import settings_callback
-from Keyboards import example_keyboard
+from src.Services import SettingsService
+from src.Callbacks import settings_callback
+from src.Keyboards import example_keyboard
 
 from Tables import UserSettings
 
