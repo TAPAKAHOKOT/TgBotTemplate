@@ -1,18 +1,14 @@
-import logging
-from os import mkdir
+from loguru import logger
+from os import mkdir, getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 try: mkdir("Logs")
 except FileExistsError: pass
 
-logging.basicConfig(
-    level=logging.DEBUG, 
-    handlers=(
-        logging.FileHandler('Logs/logs.log', mode='a'), 
-        logging.StreamHandler()
-    ),
-    format='[%(asctime)s %(levelname)s] %(message)s',
-    datefmt='%d.%m.%Y %H:%M:%S'
-)
+logger.add('Logs/logs.log', format='{time} {level} {message}',\
+        level=getenv('LOG_LEVEL'), rotation='1 MB', compression='zip')
 
-logging.info('-'*50)
-logging.info('Logging start')
+logger.info('-'*50)
+logger.info('Logging start')

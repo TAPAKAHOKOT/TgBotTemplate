@@ -1,6 +1,6 @@
 from .languages.english import translations as english
 from .languages.russian import translations as russian
-import logging
+from loguru import logger
 
 class Translations:
     def __init__(self, default_language: str):
@@ -21,7 +21,7 @@ class Translations:
                 return self.all_translations[self.current_language]
             return self.all_translations[self.default_language]
         except KeyError:
-            logging.error(f'key {self.default_language} not found in Translations.all_translations')
+            logger.error(f'key {self.default_language} not found in Translations.all_translations')
             raise KeyError
     
     def get_recoursive(self, keys: list, translations: dict, default: any = '') -> str:

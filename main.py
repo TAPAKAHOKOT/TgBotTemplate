@@ -1,4 +1,4 @@
-import logging
+from loguru import logger
 from aiogram import executor
 from Settings import settings
 
@@ -12,10 +12,10 @@ from Middlewares import (
 from Filters import RolesFilter
 
 async def on_startup(x):
-    logging.info('Bot started')
+    logger.info('Bot started')
 
 async def on_shutdown(x):
-    logging.info('Bot finished')
+    logger.info('Bot finished')
 
 def setup_middlewares():
     settings.dp.middleware.setup(LoggingMiddleware())
@@ -29,7 +29,7 @@ def bind_filters():
 def start_polling():
     setup_middlewares()
     executor.start_polling(settings.dp, skip_updates=True, on_startup=on_startup, on_shutdown=on_shutdown)
-    logging.info('Script finished')
+    logger.info('Script finished')
 
 if __name__ == '__main__':
     start_polling()
