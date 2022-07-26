@@ -59,5 +59,8 @@ class User(Base, BaseModel):
             or_(Role.role == 'root', Role.role == 'admin')
         ).all()
 
+    def get_all_users(session: Session) -> list:
+        return session.query(User).all()
+
 
 users_table = User.__table__

@@ -1,1 +1,2 @@
-from .RolesFilter import RolesFilter
+from .RolesFilter import IsRootFilter
+from .RolesFilter import IsAdminFilter

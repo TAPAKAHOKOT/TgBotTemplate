@@ -4,7 +4,7 @@ from aiogram.dispatcher.filters import Text
 from Configs import translations
 from Settings import settings
 from src.Callbacks import example_callback
-from src.Keyboards import example_keyboard
+from src.Keyboards import ExampleKeyboard
 
 
 # <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=number] >>>>>>>>>>>>>>>>>>
@@ -38,5 +38,5 @@ async def joke_message_example(message: types.Message):
 async def joke_message_example(message: types.Message):
     await message.answer(
         translations.get('keyboards.answers.another-keyboard'),
-        reply_markup=example_keyboard.test
+        reply_markup=ExampleKeyboard.get_test_keyboard()
     )

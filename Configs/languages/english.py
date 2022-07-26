@@ -1,7 +1,8 @@
 translations = {
     'commands': {
         'answers': {
-            'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i will help you to get notifications from rocket. Press /help to get an instruction',
+            'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i will help you to get notifications from rocket. ' +
+            'Press /help to get an instruction',
             'help': '/help command',
             'settings': 'Choose a setting',
             'role': {
@@ -19,15 +20,20 @@ translations = {
             'hello': 'Hi Hello',
             'joke': '<<Funny Joke>>',
             'another-keyboard': 'Open another keyboard',
-            'write-to-dev': 'Введите ниже сообщение которое хотите отправить разработчикам',
-            'wrote-to-dev': 'Сообщение отправлено разработчикам',
-            'message-from-user': 'Сообщение от пользователя [ <a href=\'https://t.me/{username}\'>{username}</a> ]:\n\n{message}'
+            'write-to-dev': 'Enter below the message you want to send to the developers',
+            'wrote-to-dev': 'Message sent to developers',
+            'write-to-all-users': 'Enter below the message you want to send to all users',
+            'wrote-to-all-users': 'Message sent to all users',
+            'message-from-user': 'Message from user [ <a href=\'https://t.me/{username}\'>' +
+            '{username}</a> ]:\n\n{message}',
+            'message-from-admin-to-all-users': 'Message from admins:\n\n{message}',
         },
         'buttons': {
             'hi': 'Hi',
             'joke': 'Joke',
             'another-keyboard': 'Another keyboard',
-            'write-to-dev': 'Написать разработчику📝'
+            'write-to-dev': 'Write to the developer📝',
+            'write-to-all-users': 'Write to all users📝',
         }
     },
     'callbacks': {

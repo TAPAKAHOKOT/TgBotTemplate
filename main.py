@@ -1,7 +1,6 @@
 from aiogram import executor
 from loguru import logger
 
-from src.Filters import RolesFilter
 from src.Handlers import *
 from src.Middlewares import (
     LoggingMiddleware,
@@ -26,8 +25,8 @@ def setup_middlewares():
     settings.dp.middleware.setup(TranslationMiddleware())
 
 
-def bind_filters():
-    settings.dp.filters_factory.bind(RolesFilter)
+# def bind_filters():
+#     settings.dp.filters_factory.bind(RolesFilter)
 
 
 def start_polling():

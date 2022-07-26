@@ -21,9 +21,7 @@ class SettingsService:
         return settings_callback.language_inline
 
     @staticmethod
-    def update_language(language: str, user_settings: UserSettings) -> UserSettings:
-        print('\n\n', language.title(), [*get_available_languages()], language.title() not in get_available_languages(),
-              '\n\n')
+    def update_language(language: str, user_settings: UserSettings) -> UserSettings|None:
         if language.title() not in get_available_languages():
             return None
 

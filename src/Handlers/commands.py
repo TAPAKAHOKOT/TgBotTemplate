@@ -2,20 +2,33 @@ from aiogram import types
 
 from Configs import translations
 from Settings import settings
-from src.Filters import RolesFilter
-from src.Keyboards import commands_keyboards
+from Tables import Role
+from src.Filters import IsRootFilter, IsAdminFilter
+from src.Keyboards import CommandsKeyboards
 from src.Services import SettingsService, ExampleService
 
 
 # <<<<<<<<<<<<<<<<<< Command [answering with keyboard] >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler(commands=["start"])
-async def command_start_example(message: types.Message):
+@settings.dp.message_handler(IsRootFilter(), commands=["start"])
+async def command_start_example(message: types.Message, role: Role):
     await message.answer(
         translations.get('commands.answers.start').format(
             user_name=message['from']['first_name'],
             bot_name=(await settings.bot.get_me()).first_name
         ),
-        reply_markup=commands_keyboards.get_main_keyboard()
+        reply_markup=CommandsKeyboards.get_main_keyboard(role)
+    )
+
+
+# <<<<<<<<<<<<<<<<<< Command [answering with keyboard] >>>>>>>>>>>>>>>>>>
+@settings.dp.message_handler(commands=["start"])
+async def command_start_example(message: types.Message, role: Role):
+    await message.answer(
+        translations.get('commands.answers.start').format(
+            user_name=message['from']['first_name'],
+            bot_name=(await settings.bot.get_me()).first_name
+        ),
+        reply_markup=CommandsKeyboards.get_main_keyboard(role)
     )
 
 
@@ -34,11 +47,18 @@ async def command_help_example(message: types.Message):
 
 
 # <<<<<<<<<<<<<<<<<< Command with callback >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler(RolesFilter(), commands=["admin"])
-async def command_admin_example(message: types.Message, is_root, is_admin):
-    answer_message = translations.get('commands.answers.role.root') if is_root else (
-        translations.get('commands.answers.role.admin') if is_admin else (
-            translations.get('commands.answers.role.user')
-        )
-    )
-    await message.answer(answer_message)
+@settings.dp.message_handler(IsRootFilter(), commands=["role"])
+async def command_admin_example(message: types.Message):
+    await message.answer(translations.get('commands.answers.role.root'))
+
+
+# <<<<<<<<<<<<<<<<<< Command with callback >>>>>>>>>>>>>>>>>>
+@settings.dp.message_handler(IsAdminFilter(), commands=["role"])
+async def command_admin_example(message: types.Message):
+    await message.answer(translations.get('commands.answers.role.admin'))
+
+
+# <<<<<<<<<<<<<<<<<< Command with callback >>>>>>>>>>>>>>>>>>
+@settings.dp.message_handler(commands=["role"])
+async def command_admin_example(message: types.Message):
+    await message.answer(translations.get('commands.answers.role.user'))

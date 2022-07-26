@@ -4,18 +4,21 @@ from Configs import translations
 
 
 class ExampleKeyboard:
-    def __init__(self):
-        self.test = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        self.test.add(
+    @staticmethod
+    def get_test_keyboard() -> types.ReplyKeyboardMarkup:
+        test = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        test.add(
             types.KeyboardButton(text='/start'),
         )
+        return test
 
-    def get_main_keyboard(self) -> types.ReplyKeyboardMarkup:
-        self.main = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        self.main.add(
+    @staticmethod
+    def get_main_keyboard() -> types.ReplyKeyboardMarkup:
+        main = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        main.add(
             types.KeyboardButton(text=translations.get('keyboards.buttons.hi')),
             types.KeyboardButton(text=translations.get('keyboards.buttons.joke')),
             types.KeyboardButton(text=translations.get('keyboards.buttons.another-keyboard')),
         )
 
-        return self.main
+        return main
