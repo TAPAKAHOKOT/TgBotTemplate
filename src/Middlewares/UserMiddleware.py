@@ -1,15 +1,15 @@
-from sqlalchemy.orm import Session
+from datetime import datetime
 
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.types import Message
-
-from datetime import datetime
+from sqlalchemy.orm import Session
 
 from Database import engine
 from Tables import (
     User,
     UserSettings
 )
+
 
 class UserMiddleware(BaseMiddleware):
     async def on_pre_process_message(self, message: Message, data: dict):
@@ -31,15 +31,13 @@ class UserMiddleware(BaseMiddleware):
             user_settings: UserSettings = user.user_settings
             if not user_settings:
                 user_settings = UserSettings(
-                    user_id = user.id
+                    user_id=user.id
                 )
             session.add(user_settings)
-            
+
             data['user'] = user
             data['role'] = user.role
             data['user_settings'] = user_settings
-    
+
     async def on_process_callback_query(self, message: Message, data: dict):
         await self.on_pre_process_message(message, data)
-
-        

@@ -1,23 +1,24 @@
 from aiogram import types
 from aiogram.dispatcher.filters import Text
 
-from Settings import settings
 from Configs import translations
-from src.Services import SettingsService
-from src.Callbacks import settings_callback, example_callback
+from Settings import settings
+from src.Callbacks import example_callback
 from src.Keyboards import example_keyboard
 
 
 # <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=number] >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(example_callback.example_inline_data.filter(type="number"))
 async def callback_number_example(call: types.CallbackQuery, callback_data: dict):
-    await call.message.edit_text(translations.get('callbacks.answers.number-value').format(value=callback_data['value']))
+    await call.message.edit_text(
+        translations.get('callbacks.answers.number-value').format(value=callback_data['value']))
 
 
 # <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=letter] >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(example_callback.example_inline_data.filter(type="letter"))
 async def callback_letter_example(call: types.CallbackQuery, callback_data: dict):
-    await call.message.edit_text(translations.get('callbacks.answers.letter-value').format(value=callback_data['value']))
+    await call.message.edit_text(
+        translations.get('callbacks.answers.letter-value').format(value=callback_data['value']))
 
 
 # <<<<<<<<<<<<<<<<<< Message with filters by many words >>>>>>>>>>>>>>>>>>

@@ -1,2 +1,2 @@
-from .SettingsService import SettingsService
 from .ExampleService import ExampleService
+from .SettingsService import SettingsService

@@ -1,10 +1,10 @@
 from aiogram import types
 
-from Settings import settings
 from Configs import translations
-from src.Services import SettingsService, ExampleService
-from src.Keyboards import example_keyboard
+from Settings import settings
 from src.Filters import RolesFilter
+from src.Keyboards import example_keyboard
+from src.Services import SettingsService, ExampleService
 
 
 # <<<<<<<<<<<<<<<<<< Command [answering with keyboard] >>>>>>>>>>>>>>>>>>
@@ -12,7 +12,7 @@ from src.Filters import RolesFilter
 async def command_start_example(message: types.Message):
     await message.answer(
         translations.get('commands.answers.start').format(
-            user_name=message['from']['first_name'], 
+            user_name=message['from']['first_name'],
             bot_name=(await settings.bot.get_me()).first_name
         ),
         reply_markup=example_keyboard.get_main_keyboard()

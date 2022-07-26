@@ -1,8 +1,10 @@
-from aiogram import Bot, Dispatcher
 from os import getenv
+
+from aiogram import Bot, Dispatcher
 from loguru import logger
 
 logger.info('Loaded dotenv')
+
 
 class Settings:
     def __init__(self):
@@ -17,6 +19,6 @@ class Settings:
 
         self.bot = Bot(token=self.token)
         logger.info('Created Bot')
-        
+
         self.dp = Dispatcher(self.bot)
         logger.info('Created Dispatcher')

@@ -1,5 +1,7 @@
 from aiogram import types
+
 from Configs import translations
+
 
 class ExampleKeyboard:
     def __init__(self):
@@ -7,7 +9,7 @@ class ExampleKeyboard:
         self.test.add(
             types.KeyboardButton(text='/start'),
         )
-    
+
     def get_main_keyboard(self) -> types.ReplyKeyboardMarkup:
         self.main = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         self.main.add(

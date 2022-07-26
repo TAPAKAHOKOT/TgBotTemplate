@@ -1,15 +1,15 @@
-from sqlalchemy.orm import Session
+from os import getenv
 
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.types import Message
-
-from os import getenv
+from sqlalchemy.orm import Session
 
 from Database import engine
 from Tables import (
     Role,
     User
 )
+
 
 class SetupRoleMiddleware(BaseMiddleware):
     async def on_pre_process_message(self, message: Message, data: dict):
@@ -19,8 +19,8 @@ class SetupRoleMiddleware(BaseMiddleware):
 
         if chat_id not in admins:
             return
-        
-        if role: 
+
+        if role:
             if role.role == 'root':
                 return
 
@@ -33,9 +33,6 @@ class SetupRoleMiddleware(BaseMiddleware):
                 session.add(user)
 
                 data['role'] = user.role
-    
+
     async def on_process_callback_query(self, message: Message, data: dict):
         await self.on_pre_process_message(message, data)
-
-
-        

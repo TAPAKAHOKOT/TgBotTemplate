@@ -1,4 +1,5 @@
-from email.policy import default
+from datetime import datetime
+
 from sqlalchemy import (
     ForeignKey,
     Column,
@@ -7,16 +8,12 @@ from sqlalchemy import (
     DateTime,
     text
 )
-from sqlalchemy.orm import (
-    relationship
-)
 
-from datetime import datetime
-
+from Configs import get_default_language
 from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
-from Configs import get_default_language
+
 
 class UserSettings(Base, BaseModel):
     __tablename__ = 'user_settings'
@@ -29,7 +26,6 @@ class UserSettings(Base, BaseModel):
 
     updated_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
     created_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
-
 
     def get_class(self):
         return UserSettings
