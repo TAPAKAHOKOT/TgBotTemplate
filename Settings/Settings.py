@@ -1,6 +1,7 @@
 from os import getenv
 
 from aiogram import Bot, Dispatcher
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from loguru import logger
 
 logger.info('Loaded dotenv')
@@ -20,5 +21,5 @@ class Settings:
         self.bot = Bot(token=self.token)
         logger.info('Created Bot')
 
-        self.dp = Dispatcher(self.bot)
+        self.dp = Dispatcher(self.bot, storage=MemoryStorage())
         logger.info('Created Dispatcher')
