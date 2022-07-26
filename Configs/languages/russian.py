@@ -18,12 +18,16 @@ translations = {
         'answers': {
             'hello': 'Прив Привет',
             'joke': '<<Смешная шутка>>',
-            'another-keyboard': 'Открываю другую клавиатуру'
+            'another-keyboard': 'Открываю другую клавиатуру',
+            'write-to-dev': 'Enter below the message you want to send to the developers',
+            'wrote-to-dev': 'Message sent to developers',
+            'message-from-user': 'Message from user [ <a href=\'https://t.me/{username}\'>{username}</a> ]:\n\n{message}'
         },
         'buttons': {
             'hi': 'Приу',
             'joke': 'Шутка',
-            'another-keyboard': 'Другая клавиатура'
+            'another-keyboard': 'Другая клавиатура',
+            'write-to-dev': 'Write to the developer📝'
         }
     },
     'callbacks': {

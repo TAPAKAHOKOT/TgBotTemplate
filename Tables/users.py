@@ -6,7 +6,8 @@ from sqlalchemy import (
     String,
     Integer,
     DateTime,
-    text
+    text,
+    or_
 )
 from sqlalchemy.orm import (
     relationship,
@@ -16,6 +17,7 @@ from sqlalchemy.orm import (
 from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
+from Tables.roles import Role
 
 
 class User(Base, BaseModel):
@@ -51,6 +53,11 @@ class User(Base, BaseModel):
         return session.query(User).where(
             User.chat_id == chat_id
         ).first()
+
+    def get_all_admins(session: Session) -> list:
+        return session.query(User).join(Role).where(
+            or_(Role.role == 'root', Role.role == 'admin')
+        ).all()
 
 
 users_table = User.__table__

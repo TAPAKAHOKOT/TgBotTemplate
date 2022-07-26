@@ -3,7 +3,7 @@ from aiogram import types
 from Configs import translations
 from Settings import settings
 from src.Filters import RolesFilter
-from src.Keyboards import example_keyboard
+from src.Keyboards import commands_keyboards
 from src.Services import SettingsService, ExampleService
 
 
@@ -15,7 +15,7 @@ async def command_start_example(message: types.Message):
             user_name=message['from']['first_name'],
             bot_name=(await settings.bot.get_me()).first_name
         ),
-        reply_markup=example_keyboard.get_main_keyboard()
+        reply_markup=commands_keyboards.get_main_keyboard()
     )
 
 

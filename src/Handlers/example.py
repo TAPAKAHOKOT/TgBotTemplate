@@ -40,9 +40,3 @@ async def joke_message_example(message: types.Message):
         translations.get('keyboards.answers.another-keyboard'),
         reply_markup=example_keyboard.test
     )
-
-
-# <<<<<<<<<<<<<<<<<< Any another message >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler()
-async def any_message_handler_example(message: types.Message):
-    await message.answer(translations.get('answers.dont-understand'))
